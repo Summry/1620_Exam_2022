@@ -52,3 +52,28 @@ const contactsList = [
 ]
 
 // Your code goes here
+const displayAllCards = document.getElementById('display_all_contacts')
+
+
+function createCards(contactsList) {
+  for (const contact of contactsList) {
+    const cardDivTemplate = `
+      <div id="${contact.ID}"></div>
+    `
+    displayAllCards.insertAdjacentHTML('afterbegin', cardDivTemplate)
+    const divCard = document.getElementById(`${contact.ID}`)
+
+    const cardImageTemplate = `
+      <img src="img/${contact.image}" alt="${contact.name}'s Profile Picture">
+    `
+    divCard.insertAdjacentHTML('beforeend', cardImageTemplate)
+
+    const cardNameTemplate = `
+      <h1>${contact.name}</h1>
+    `
+    divCard.insertAdjacentHTML('beforeend', cardNameTemplate)
+  }
+}
+
+createCards(contactsList)
+
