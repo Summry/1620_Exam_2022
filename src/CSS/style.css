@@ -1,9 +1,9 @@
 :root {
   --white: #f6f8f7;
-  --grey:  #494a5c;
+  --grey: #494a5c;
   --black: #2a292f;
-  --blue:  #6aaeca;
-  --red:   #e88e66;
+  --blue: #6aaeca;
+  --red: #e88e66;
 }
 
 /* CSS reset */
@@ -25,8 +25,8 @@ img {
 /* styles */
 .container {
   display: flex;
-
-
+  flex-direction: column;
+  min-height: 100vh;
   font-family: 'Inter', sans-serif;
   background-color: var(--white);
 }
@@ -66,7 +66,7 @@ header a:hover {
 }
 
 main {
-
+  display: block;
 }
 
 #individual_contact {
@@ -99,6 +99,22 @@ main {
   border-radius: 50px;
 }
 
+#display_single_contact {
+  max-width: fit-content;
+}
+
+#display_single_contact div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#justStyle {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 #display_all_contacts {
   display: flex;
   flex-grow: 0;
@@ -128,7 +144,7 @@ main {
 }
 
 footer {
-  height: 5rem;
+  height: 60vh;
   display: flex;
   justify-content: center;
 }
@@ -137,5 +153,5 @@ footer p {
   font-weight: 500;
   font-size: 1.6rem;
   color: var(--grey);
-  align-self: center;
+  align-self: end;
 }

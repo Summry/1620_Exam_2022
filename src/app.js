@@ -51,9 +51,20 @@ const contactsList = [
   },
 ]
 
+const contactsLength = contactsList.length
+
 // Your code goes here
 const displayAllCards = document.getElementById('display_all_contacts')
-
+const displaySingleCard = document.getElementById('display_single_contact')
+const closeBtnTemplate = `
+  <span class="icons"><i class="fa-solid fa-circle-xmark"></i></span>
+`
+const emailTemplate = `
+  <address></address>
+`
+const phoneTemplate = `
+  <p></p>
+`
 
 function createCards(contactsList) {
   for (const contact of contactsList) {
@@ -77,3 +88,42 @@ function createCards(contactsList) {
 
 createCards(contactsList)
 
+function displayCard(evt) {
+  for (const contact of contactsList) {
+    if (evt.target.id == `${contact.ID}` || evt.target.parentElement.id == `${contact.ID}`) {
+      displayAllCards.style.display = `none`
+      displaySingleCard.style.display = 'block'
+
+      const singleCardTemplate = `
+        <div id="${contact.ID}"></div>
+      `
+      displaySingleCard.insertAdjacentHTML('beforeend', singleCardTemplate)
+
+      const cardImageTemplate = `
+        <img src="img/${contact.image}" alt="${contact.name}'s Profile Picture">
+      `
+      const singleCard = document.getElementById(`${contact.ID}`)
+      singleCard.insertAdjacentHTML('beforeend', cardImageTemplate)
+      const singleCardStyleTemplate = `
+        <div id="justStyle"></div>
+      `
+      singleCard.insertAdjacentHTML('beforeend', singleCardStyleTemplate)
+      const justStyleDiv = document.getElementById('justStyle')
+      const cardNameTemplate = `
+        <h1>${contact.name}</h1>
+      `
+      justStyleDiv.insertAdjacentHTML('beforeend', cardNameTemplate)
+      justStyleDiv.insertAdjacentHTML('beforeend', phoneTemplate)
+      const phoneSelect = document.querySelector('#justStyle p')
+      phoneSelect.insertAdjacentHTML('beforeend', contact.phone)
+
+      justStyleDiv.insertAdjacentHTML('beforeend', emailTemplate)
+      const emailSelect = document.querySelector('#justStyle address')
+      emailSelect.insertAdjacentHTML('beforeend', contact.email)
+
+      singleCard.insertAdjacentHTML('beforeend', closeBtnTemplate)
+    }
+  }
+}
+
+displayAllCards.addEventListener('click', displayCard)
